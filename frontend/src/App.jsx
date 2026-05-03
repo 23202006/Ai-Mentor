@@ -68,10 +68,9 @@ const App = () => {
             <Route path="/learning/:id" element={<LearningPage />} />
             <Route path="/success" element={<Success />} />
           </Route>
+          {/* Course preview - protected but without sidebar layout */}
+          <Route path="/course-preview/:courseId" element={<CoursePreview />} />
         </Route>
-
-        {/* Other public routes */}
-        <Route path="/course-preview/:courseId" element={<CoursePreview />} />
 
       </Routes>
     </Suspense>
