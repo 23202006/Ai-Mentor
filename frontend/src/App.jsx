@@ -4,8 +4,10 @@ import { useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardLayout from "./components/DashboardLayout";
 import LoadingSpinner from "./components/common/LoadingSpinner";
+import CompleteProfilePage from "./pages/CompleteProfilePage";
+import "./App.css";
 
-// Lazy Loading 
+// Lazy Loading
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -20,8 +22,6 @@ const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const CertificatesPage = lazy(() => import("./pages/CertificatesPage"));
 const Success = lazy(() => import("./pages/Success"));
-import CompleteProfilePage from "./pages/CompleteProfilePage";
-import "./App.css";
 
 // Redirect from root
 const RootRedirect = () => {
@@ -55,7 +55,6 @@ const App = () => {
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
-          {/* Complete Profile Route */}
           <Route path="/complete-profile" element={<CompleteProfilePage />} />
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -68,10 +67,9 @@ const App = () => {
             <Route path="/learning/:id" element={<LearningPage />} />
             <Route path="/success" element={<Success />} />
           </Route>
+          {/* Course preview - protected but without sidebar layout */}
+          <Route path="/course-preview/:courseId" element={<CoursePreview />} />
         </Route>
-
-        {/* Other public routes */}
-        <Route path="/course-preview/:courseId" element={<CoursePreview />} />
 
       </Routes>
     </Suspense>
